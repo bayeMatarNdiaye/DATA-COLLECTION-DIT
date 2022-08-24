@@ -1,7 +1,10 @@
+import random
+from libraries.bceao import URL
 from libraries.utils import Utils
 from libraries.csv import CsvFactory
 from libraries.json import JsonFactory
 from libraries.html import HtmlFactory
+from libraries.bceao import CurrencyScrapper
 import pandas as pd
 
 
@@ -22,9 +25,13 @@ if __name__ == '__main__':
     print('\n')
     print(Utils.divider())
     print(HtmlFactory.main())
-    data = toDataFrame()
+    mydf = toDataFrame()
     print('\n\nGLOBAL DATA\n\n')
-    print(data)
-    
-    
-    
+    print(mydf)
+    print(Utils.divider())
+    df1 = (CurrencyScrapper.main())
+    df2 = CurrencyScrapper.makeCurrencyList(URL)
+    print(df1)
+    print(df2)
+    newdf = Utils.contertToXOF(df1,df2)
+    print(newdf)

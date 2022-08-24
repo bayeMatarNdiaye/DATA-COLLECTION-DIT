@@ -8,10 +8,25 @@ class Utils(object):
 
     @classmethod
     def randomize(cls,
-                  start,
-                  final):
+                start,
+                final):
         return random \
             .randint(start, final)
+
+
+    @classmethod
+    def deviseRandomise(cls, devList):
+        return random.choice(devList)
+
+
+    @classmethod
+    def contertToXOF(cls, df1, df2):
+        for i in range(len(df2)):
+            for j in range(len(df1)):
+                if df1['devise'][j] == df2['Devise'][i]:
+                    df1["salaryInXOF"] = int(df1['salary'][j]) * int(df2['Vente'][i])
+        return df1
+
 
     @classmethod
     def x(cls, x):
