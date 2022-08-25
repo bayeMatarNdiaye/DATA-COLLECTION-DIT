@@ -1,5 +1,7 @@
 import random
+from libraries.countries import ApiFetcher
 from libraries.bceao import URL
+from libraries.countries import url
 from libraries.utils import Utils
 from libraries.csv import CsvFactory
 from libraries.json import JsonFactory
@@ -16,7 +18,7 @@ def toDataFrame():
     data = pd.DataFrame.from_dict(globData, orient='columns')
     return data
 
-if __name__ == '__main__':
+if __name__ == '__main__' :
     print(Utils.divider())
     print(JsonFactory.main())
     print('\n')
@@ -35,3 +37,6 @@ if __name__ == '__main__':
     print(df2)
     newdf = Utils.contertToXOF(df1,df2)
     print(newdf)
+    print(Utils.divider())
+    print(ApiFetcher.main())    
+    

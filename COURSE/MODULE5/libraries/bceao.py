@@ -82,7 +82,7 @@ class CurrencyScrapper(object):
         
         devList = ["Euro", "Dollar us", "Yen japonais"]
         data['devise'] = '' 
-        data['devise'] = data['devise'].apply(lambda x: Utils.deviseRandomise(devList))
+        data['devise'] = data['devise'].apply(lambda x: Utils.choiceRandomise(devList))
         return data
 
 

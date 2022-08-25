@@ -4,7 +4,7 @@ import random
 class Utils(object):
     @classmethod
     def divider(cls, n=54):
-        return '-' * n
+        return '*-*' * n
 
     @classmethod
     def randomize(cls,
@@ -15,8 +15,8 @@ class Utils(object):
 
 
     @classmethod
-    def deviseRandomise(cls, devList):
-        return random.choice(devList)
+    def choiceRandomise(cls, aList):
+        return random.choice(aList)
 
 
     @classmethod
