@@ -13,13 +13,13 @@ class Databases(object):
         cnx = mysql.connector.connect(user='root', password='', host='localhost', database='mydb')
         mycursor=cnx.cursor()
         #mycursor.execute("DROP DATABASE mydb")
-        mycursor.execute("CREATE DATABASE mahoudb")
-        mycursor.execute("USE mahoudb")
+        #mycursor.execute("CREATE DATABASE mydb")
+        mycursor.execute("USE mydb")
         reqC = "CREATE TABLE client(idClient INT PRIMARY KEY NOT NULL AUTO_INCREMENT, name VARCHAR(100), phone VARCHAR(25), email VARCHAR(50), address VARCHAR(100), latlng VARCHAR(50) NULL, age INT, idCountry INT,FOREIGN KEY (idCountry) REFERENCES country(idCountry))"
         mycursor.execute(reqC)
         reqI = "CREATE TABLE income(idIcme INT PRIMARY KEY NOT NULL AUTO_INCREMENT, devise VARCHAR(50), salary INT, salaryInXOF INT, idClient INT, FOREIGN KEY (idClient) REFERENCES client(idClient))"
         mycursor.execute(reqI)
-        reqk = "CREATE TABLE country(idCountry INT PRIMARY KEY NOT NULL AUTO_INCREMENT, country VARCHAR(100), flag VARCHAR(100))"
+        reqk = "CREATE TABLE country(idCountry INT PRIMARY KEY NOT NULL AUTO_INCREMENT, country LONGTEXT, flag VARCHAR(100))"
         mycursor.execute(reqk)
         
         
