@@ -28,7 +28,8 @@ class HtmlFactory(object):
                     'name' : tds[0].text,
                     'phone' : tds[1].text,
                     'email' : tds[2].text,
-                    'lonlat' : tds[3].text,
+                    'address' : 'P.O. Box 631, 8006 Aliquam St.',
+                    'latlng' : tds[3].text,
                     'salary' : tds[4].text,
                     'age' : tds[5].text     
                 }
@@ -51,4 +52,5 @@ class HtmlFactory(object):
         data = cls.openFile()
         data = cls.fetchData(data)
         data = cls.naming(data)
+        print(data)
         return(data)

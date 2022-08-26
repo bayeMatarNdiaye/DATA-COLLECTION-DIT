@@ -7,6 +7,7 @@ from libraries.csv import CsvFactory
 from libraries.json import JsonFactory
 from libraries.html import HtmlFactory
 from libraries.bceao import CurrencyScrapper
+from libraries.database import Databases
 import pandas as pd
 
 
@@ -27,6 +28,7 @@ if __name__ == '__main__' :
     print('\n')
     print(Utils.divider())
     print(HtmlFactory.main())
+    print('DFDFDF***********')
     mydf = toDataFrame()
     print('\n\nGLOBAL DATA\n\n')
     print(mydf)
@@ -36,7 +38,10 @@ if __name__ == '__main__' :
     print(df1)
     print(df2)
     newdf = Utils.contertToXOF(df1,df2)
-    print(newdf)
+    print(newdf.head(15))
     print(Utils.divider())
-    print(ApiFetcher.main())    
+    print(ApiFetcher.main())
+    data = ApiFetcher.main()
+    print(data)   
+    conn = Databases.main() 
     

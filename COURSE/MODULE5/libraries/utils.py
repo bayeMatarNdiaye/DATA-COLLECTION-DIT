@@ -20,7 +20,7 @@ class Utils(object):
 
 
     @classmethod
-    def contertToXOF(cls, df1, df2):
+    def contertToXOF(cls, df1, df2):   
         for i in range(len(df2)):
             for j in range(len(df1)):
                 if df1['devise'][j] == df2['Devise'][i]:
