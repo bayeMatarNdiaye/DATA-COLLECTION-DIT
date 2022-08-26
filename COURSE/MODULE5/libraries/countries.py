@@ -48,12 +48,13 @@ class ApiFetcher(object):
 
 
     @classmethod
-    def addCountriesFlag(cls, newdf, dataCountries):
-        for i in range(len(dataCountries)):
-            for j in range(len(newdf)):
-                if newdf['country'][j] == dataCountries['name'][i]:
-                    newdf['flag'] = dataCountries['flag'][i]
-        return newdf
+    def addCountriesFlag(cls, df1, df2):
+        df1["flag"] = ""
+        for i in range(len(df2)):
+            for j in range(len(df1)):
+                if df1['country'][j] == df2['name'][i]:
+                    df1['flag'][j] = df2['flag'][i]
+        return df1
 
 
     @classmethod

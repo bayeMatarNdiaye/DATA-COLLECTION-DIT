@@ -28,7 +28,6 @@ if __name__ == '__main__' :
     print('\n')
     print(Utils.divider())
     print(HtmlFactory.main())
-    print('DFDFDF***********')
     mydf = toDataFrame()
     print('\n\nGLOBAL DATA\n\n')
     print(mydf)

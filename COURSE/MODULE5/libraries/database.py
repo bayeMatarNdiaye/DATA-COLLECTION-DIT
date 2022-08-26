@@ -1,3 +1,4 @@
+from asyncore import read
 import mysql.connector
 import pandas as pd
 from sqlalchemy import create_engine
@@ -11,17 +12,20 @@ class Databases(object):
     def dbCreate(cls):
         cnx = mysql.connector.connect(user='root', password='', host='localhost', database='mydb')
         mycursor=cnx.cursor()
-        mycursor.execute("DROP DATABASE mydb")
-        mycursor.execute("CREATE DATABASE mydb")
-        mycursor.execute("USE mydb")
-        reqC = "CREATE TABLE client(idClient INT PRIMARY KEY NOT NULL AUTO_INCREMENT, name VARCHAR(100), phone VARCHAR(25), email VARCHAR(50), address VARCHAR(100), latlng VARCHAR(50) NULL, age INT)"
+        #mycursor.execute("DROP DATABASE mydb")
+        mycursor.execute("CREATE DATABASE mahoudb")
+        mycursor.execute("USE mahoudb")
+        reqC = "CREATE TABLE client(idClient INT PRIMARY KEY NOT NULL AUTO_INCREMENT, name VARCHAR(100), phone VARCHAR(25), email VARCHAR(50), address VARCHAR(100), latlng VARCHAR(50) NULL, age INT, idCountry INT,FOREIGN KEY (idCountry) REFERENCES country(idCountry))"
         mycursor.execute(reqC)
-        reqI = "CREATE TABLE income(idIcme INT PRIMARY KEY NOT NULL AUTO_INCREMENT, devise VARCHAR(50), salary INT, salaryInXOF INT)"
+        reqI = "CREATE TABLE income(idIcme INT PRIMARY KEY NOT NULL AUTO_INCREMENT, devise VARCHAR(50), salary INT, salaryInXOF INT, idClient INT, FOREIGN KEY (idClient) REFERENCES client(idClient))"
         mycursor.execute(reqI)
         reqk = "CREATE TABLE country(idCountry INT PRIMARY KEY NOT NULL AUTO_INCREMENT, country VARCHAR(100), flag VARCHAR(100))"
         mycursor.execute(reqk)
         
+        
+        
         dataframe = ApiFetcher.main()
+        print(dataframe.columns)
         val1 = []
         for i in range(len(dataframe)): 
             val1.append((dataframe['name'][i], dataframe['phone'][i], dataframe['email'][i], dataframe['address'][i], str(dataframe['latlng'][i]), str(dataframe['age'][i])))
@@ -40,6 +44,23 @@ class Databases(object):
         req3 = "INSERT INTO country (country, flag) VALUES (%s, %s)"
         mycursor.executemany(req3, val3)
 
+
+    @classmethod
+    def recupData(cls):
+        cnx = mysql.connector.connect(user='root', password='', host='localhost', database='mydb')
+        mycursor=cnx.cursor()
+        readClient = "SELECT * FROM client"
+        mycursor.execute(readClient)
+        dataClient = mycursor.fetchall()
+        readIncome = "SELECT * FROM income"
+        mycursor.execute(readIncome)
+        dataIncome = mycursor.fetchall()
+        readCountry = "SELECT * FROM country"
+        mycursor.execute(readCountry)
+        dataCountry = mycursor.fetchall()
+        
+        data = dataClient + dataIncome + dataCountry
+        return data
 
 
     @classmethod

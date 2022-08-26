@@ -21,10 +21,11 @@ class Utils(object):
 
     @classmethod
     def contertToXOF(cls, df1, df2):   
+        df1["salaryInXOF"] = 0
         for i in range(len(df2)):
             for j in range(len(df1)):
                 if df1['devise'][j] == df2['Devise'][i]:
-                    df1["salaryInXOF"] = int(df1['salary'][j]) * int(df2['Vente'][i])
+                    df1["salaryInXOF"][j] = int(df1['salary'][j]) * int(df2['Achat'][i])
         return df1
 
 
